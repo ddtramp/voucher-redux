@@ -1,0 +1,70 @@
+.voucher {
+    width: 100%;
+}
+.voucher table {  width: 1000px; border-collapse: collapse; border-spacing: 0; box-sizing: border-box; }
+.voucher table tr { box-sizing: border-box; }
+.voucher table td { vertical-align: middle; text-align: center; border: 1px solid #ccc; height: 30px; padding: 0 0; font-size: 14px; font-weight: bold; }
+
+.voucher .jeul { list-style: none; padding: 0 0; margin: 0 0; height: 30px; display: flex; font-size: 12px; font-weight: normal; }
+.voucher .jeul li { width: 16px; height: 30px; line-height: 30px; display: inline-flex; flex: 1; margin: 0 auto; text-align: center; justify-content: center; border-right: 1px solid #ccc; }
+.voucher .jeul li:last-child { border-right: 0 none; }
+
+.hidden { display: none !important; }
+
+
+/* header */
+.header { height: 63px; margin: 0 26px 0 30px; }
+
+.blue { border-color: #a5d9f6 !important; }
+.red {  border-color: #eeb9b9 !important; }
+
+.zy { width: 200px; }
+.je { width: 176px;  }
+
+
+
+
+/* body */
+.body { max-height: 244px; width: 1080px;  overflow-x: hidden; overflow-y: auto; z-index: -1; }
+.body table { width: 1060px;  }
+.body table tr { position: relative; }
+.body table td { border-top: 0 none; font-weight: normal; }
+.body .jeul {  height: 60px;  }
+.body .jeul  li { height: 60px; line-height: 60px; font-size: 18px; }
+.body .jeul  li:last-child { border-right: 0 none; }
+.blue { border-color: #a5d9f6 !important; }
+.red {  border-color: #eeb9b9 !important; }
+
+
+.bodyZy { vertical-align: top !important; }
+
+.addStyle { width: 30px; border: none !important; }
+.addArea { width: 24px; height: 61px; position: relative;  }
+.addArea span { position: absolute; top: 24px; left: 6px; border: 1px solid #ccc; padding: 0 5px; border-radius: 50% 50%; cursor: pointer; color: #ccc; }
+
+.zyText { padding: 4px 4px; text-align: left; height: 52px; width: 192px; word-break: break-all; }
+.zyEdit { height: 60px; }
+.zyEdit textarea { position: relative;  height: 60px; border: 2px solid #3ec8dd; width: 192px; height: 54px; resize: none; overflow: auto; }
+
+
+.bodyKjkm { vertical-align: top !important; }
+.kjkmText { padding: 4px 4px; text-align: left; height: 52px; position: relative; }
+
+.jeText { padding: 4px 4px; text-align: left; height: 52px; }
+.jeEdit { height: 60px; }
+.jeEdit input { height: 60px; border: 2px solid #3ec8dd; width: 178px; height: 53px; resize: none; overflow: auto; text-align: right; font-size: 20px; }
+
+.delStyle { width: 30px; border: none !important; }
+.delArea { width: 24px; height: 61px; position: relative;  }
+.delArea span { position: absolute; top: 24px; left: 6px; border: 1px solid #ccc; padding: 0 5px; border-radius: 50% 50%; cursor: pointer; color: #ccc; }
+
+
+/* footer */
+.footer { height: 60px; margin: 0 46px 0 30px;}
+.footer .jeul  li { font-size: 18px; }
+
+.footerLeft { text-align: left; padding-left: 20px;  }
+.footer .jeul {  height: 60px;  }
+.footer .jeul  li { height: 60px; line-height: 60px;}
+
+

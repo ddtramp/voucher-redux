@@ -1,0 +1,10 @@
+.outside { display: flex; width: 1000px; height: 66px; min-height: 66px; margin: 0 40px 0 30px;  }
+.outside > div { display: inline-block; padding: 20px 0; }
+
+.number { width: 20%; }
+.number input { width: 48px; }
+
+.date { width: 30%; }
+
+.accessory { width: 50%; text-align: right; }
+.accessory input { width: 48px; }

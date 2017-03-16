@@ -1,11 +1,11 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
     devtool: 'eval-source-map',
 
-    entry:  __dirname + "/app/main.js",
+    entry:  __dirname + "/app/index.js",
     output: {
         path: __dirname + "/public",
         filename: "bundle.js"
@@ -23,7 +23,9 @@ module.exports = {
 
             },
             {
-                test: /\.css$/,
+                test: /app\/\w+\.css$/,
+                exclude: /node_modules/,
+
                 use: [
                     {
                         loader: "style-loader"
@@ -39,6 +41,22 @@ module.exports = {
                         loader: "postcss-loader"
                     }
                 ]
+            },
+            {
+                test: /react-date-picker\/index\.css$/,
+                include: /node_modules/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: false
+                        }
+
+                    }
+                ]
             }
         ]
     },
@@ -48,7 +66,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: __dirname + "/app/index.tmpl.html"//new 一个这个插件的实例，并传入相关的参数
         }),
-        new webpack.HotModuleReplacementPlugin()//热加载插件
+        new webpack.HotModuleReplacementPlugin(), //热加载插件
+        new OpenBrowserPlugin({ url: 'http://localhost:8080' })
     ],
 
     devServer: {

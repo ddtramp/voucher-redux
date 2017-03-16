@@ -3,7 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: __dirname + "/app/main.js",
+    entry: __dirname + "/app/index.js",
     output: {
         path: __dirname + "/build",
         filename: "[name]-[hash].js"
