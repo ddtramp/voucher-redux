@@ -19,6 +19,7 @@ class VMBody extends Component {
                 currentIndex={ i }
                 subject={ this.props.subjects[i] }
                 event = { this.props.event }
+                editAble = { this.props.editAble }
 
                 _addTr={ this.props._addTr }
                 _delTr = { this.props._delTr }

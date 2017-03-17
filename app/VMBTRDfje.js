@@ -15,7 +15,7 @@ class VMBTRDfje extends Component {
             <td  className={ style.je }>
                 <Je
                     ref="je"
-                    editAble = { true }
+                    editAble = { this.props.editAble.dfjeEditAble }
                     je={ this.props.je }
                     currentIndex= { this.props.currentIndex }
 

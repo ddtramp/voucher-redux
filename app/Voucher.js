@@ -24,6 +24,15 @@ class Voucher extends Component{
             isDfInputShow: false,       // { String | Number }
         };
 
+        var defaultEditable = {
+            currentEdit: -1,
+            isZyEditAble: true,
+            isKjkmEditAble: true,
+            jfjeEditAble: true,
+            dfjeEditAble: true
+        };
+        Object.assign(defaultEditable, props);
+
         var state = {
             subjects: [ ],
             zdr: {
@@ -39,10 +48,13 @@ class Voucher extends Component{
                 index: this.props.currentEdit
             },
 
+            editAble: defaultEditable,
+
             isDropDownShow: false,  // DropDown hide or show
             dropDownTextareaValue: '',  // DropDown textarea value
             KjkmPositionStyles: {},  // DropDown position
-            dropDownLength: null,   // 总条目
+
+            dropDownLength: null,   // 总条目 keydown； up and down arrow
             dropDownCurrentIndex: 0, // 当前条目
             isValid: false,          // 是否平衡; when Je Component input change
             event: null              // { String } keyDown、 click、 change； for je focus and select
@@ -100,7 +112,10 @@ class Voucher extends Component{
 
         var defauleSubjects = [];
         var firstRow = Object.assign({}, this.defaultSubject);
-        firstRow.zyTextareaShow = true;
+        firstRow.zyTextareaShow = false;
+        firstRow.subject = '1001';
+        firstRow.name = '银行存款';
+
         defauleSubjects.push(firstRow);
         defauleSubjects.push(Object.assign({}, this.defaultSubject));
         defauleSubjects.push(Object.assign({}, this.defaultSubject));
@@ -576,6 +591,7 @@ class Voucher extends Component{
                     subjects={ this.state.subjects }
                     total = { this.state.total }
                     event = { this.state.event }
+                    editAble = { this.state.editAble }
 
                     _addTr={ this._addTr }
                     _delTr = { this._delTr }
@@ -653,11 +669,14 @@ class DropDown extends Component {
         if (!filter) {
             liData = this.subjects;
         } else {
-            this.subjects.map(function (v) {
-                if (v.all.search(reg) !== -1 ) {
-                    liData.push(v);
-                }
-            })
+            // this.subjects.map(function (v) {
+            //     if (v.all.search(reg) !== -1 ) {
+            //         liData.push(v);
+            //     }
+            // })
+            liData = this.subjects.filter(function (val) {
+                    return reg.test(val.all)
+            });
         }
 
         return (

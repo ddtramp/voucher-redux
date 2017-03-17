@@ -13,15 +13,15 @@ class VMBTRZy extends Component {
 
     }
     componentDidUpdate () {
-        if (this.props.subject.zyTextareaShow) {
+        if ( this.props.editAble.isZyEditAble && this.props.subject.zyTextareaShow ) {
             this.textAreaInput.focus();
         }
 
     }
 
     render () {
-
         return (
+            this.props.editAble.isZyEditAble ?
             <td className={ style.zy  + ' ' + style.bodyZy}>
                 <div>
                     <ZyText
@@ -43,6 +43,17 @@ class VMBTRZy extends Component {
                     </div>
                 </div>
             </td>
+                :
+                <td className={ style.zy  + ' ' + style.bodyZy}>
+                    <div>
+                        <ZyText
+                            summary={this.props.subject.summary}
+                            className={ this.props.subject.zyTextareaShow ? style.hidden : '' }
+                            currentIndex= { this.props.currentIndex }
+
+                        ></ZyText>
+                    </div>
+                </td>
         )
     }
 

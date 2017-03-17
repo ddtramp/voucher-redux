@@ -27,16 +27,28 @@ class VMBTRKjkm extends Component {
             ( this.props.subject.subjectTextareaShow ? style.hidden : '' )
         ];
         return (
-            <td className={ style.bodyKjkm }>
-                <div>
-                    <div className={ kjkmTextClassName.join(' ') }
-                         onClickCapture={ this.props._kjkmTextClick }
-                         data-currentindex={ this.props.currentIndex }
-                    >
-                        { (this.props.subject.subject) ? ( this.props.subject.subject + ' ' + this.props.subject.name) : '' }
+
+            this.props.editAble.isKjkmEditAble ?
+                <td className={ style.bodyKjkm }>
+                    <div>
+                        <div className={ kjkmTextClassName.join(' ') }
+                             onClickCapture={ this.props._kjkmTextClick }
+                             data-currentindex={ this.props.currentIndex }
+                        >
+                            { (this.props.subject.subject) ? ( this.props.subject.subject + ' ' + this.props.subject.name) : '' }
+                        </div>
                     </div>
-                </div>
-            </td>
+                </td>
+                :
+                <td className={ style.bodyKjkm }>
+                    <div>
+                        <div className={ kjkmTextClassName.join(' ') }
+                             data-currentindex={ this.props.currentIndex }
+                        >
+                            { (this.props.subject.subject) ? ( this.props.subject.subject + ' ' + this.props.subject.name) : '' }
+                        </div>
+                    </div>
+                </td>
         )
     }
 }

@@ -21,6 +21,7 @@ class VoucherMiddle extends Component {
                     ref="VMBody"
                     subjects={ this.props.subjects }
                     event = { this.props.event }
+                    editAble = { this.props.editAble }
 
                     _addTr = { this.props._addTr }
                     _delTr = { this.props._delTr }

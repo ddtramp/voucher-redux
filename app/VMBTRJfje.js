@@ -14,7 +14,7 @@ class VMBTRJfje extends Component {
                 <Je
                     ref="je"
                     je={ this.props.je }
-                    editAble = { true }
+                    editAble = { this.props.editAble.jfjeEditAble }
                     currentIndex= { this.props.currentIndex }
 
                     isJeInputShow={this.props.isJeInputShow }

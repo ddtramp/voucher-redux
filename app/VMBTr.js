@@ -75,6 +75,8 @@ class VMBTr extends Component {
                 <VMBTRZy
                     subject={ this.props.subject }
                     currentIndex= { this.props.currentIndex }
+                    editAble = { this.props.editAble }
+
                     _zyEditTextareaChange={ this.props._zyEditTextareaChange }
                     _zyTextClick = { this.props._zyTextClick }
                     _zyEditTextareaBlur = { this.props._zyEditTextareaBlur }
@@ -84,6 +86,8 @@ class VMBTr extends Component {
                 <VMBTRKjkm
                     ref="VMBTRKjkm"
                     currentIndex= { this.props.currentIndex }
+                    editAble = { this.props.editAble }
+
                     _liOnMouseDown = { this.props._liOnMouseDown }
                     _kjkmTextClick = { this.props._kjkmTextClick }
                     _kjkmEditTextareaBlur = { this.props._kjkmEditTextareaBlur }
@@ -95,6 +99,8 @@ class VMBTr extends Component {
                 <VMBTRJfje
                     isJeInputShow={this.props.subject.isJfInputShow }
                     currentIndex= { this.props.currentIndex }
+                    editAble = { this.props.editAble }
+
                     ref="VMBTRJfje"
                     je={ this.props.subject.jfje }
                     direction="0"
@@ -107,6 +113,8 @@ class VMBTr extends Component {
                 <VMBTRDfje
                     isJeInputShow={this.props.subject.isDfInputShow }
                     currentIndex= { this.props.currentIndex }
+                    editAble = { this.props.editAble }
+
                     ref="VMBTRDfje"
                     je={ this.props.subject.dfje }
                     direction="1"
