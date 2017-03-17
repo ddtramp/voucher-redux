@@ -7,9 +7,20 @@ import style from './VoucherTop.css';
 class VTNInput extends Component {
 
     render() {
-
+        var className  = [
+            style.inputStyle,
+            ( this.props.focus ) ?  style.inputStyleFocused : ''
+        ];
         return (
-            <input type="text"/>
+            <div className={ className.join(' ') }>
+                <input
+                    type="text"
+                    value={ this.props.v }
+                    onFocus = { this.props._topNoFocus }
+                    onBlur = { this.props._topNoBlur }
+                    onChange={ this.props._topNoChange }
+                />
+            </div>
         )
     }
 }

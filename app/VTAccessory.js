@@ -12,7 +12,14 @@ class VTAccessory extends Component {
         return (
             <div className={style.accessory}>
                 附单据 &nbsp;
-                <VTAInput></VTAInput>
+                <VTAInput
+                    v = { this.props.v }
+                    focus = { this.props.focus }
+                    _topAccessoryFocus = { this.props._topAccessoryFocus }
+                    _topAccessoryBlur = { this.props._topAccessoryBlur }
+                    _topAccessoryChange = { this.props._topAccessoryChange }
+
+                ></VTAInput>
                 &nbsp;张
             </div>
         )

@@ -1,10 +1,15 @@
 .outside { display: flex; width: 1000px; height: 66px; min-height: 66px; margin: 0 40px 0 30px;  }
 .outside > div { display: inline-block; padding: 20px 0; }
 
+.inputStyle { display: inline-block; border: 1px solid #cdcdcd; padding: 4px 2px; border-radius: 4px 4px; }
+.inputStyleFocused { border-color: #349aef; }
+
 .number { width: 20%; }
-.number input { width: 48px; }
+.number input { width: 48px; border: 0 none; text-align: center; }
+.number input:focus { outline: 0 none; }
 
 .date { width: 30%; }
 
 .accessory { width: 50%; text-align: right; }
-.accessory input { width: 48px; }
+.accessory input { width: 48px; border: 0 none; text-align: center; }
+.accessory input:focus { outline: 0 none; }

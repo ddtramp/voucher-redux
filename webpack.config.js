@@ -16,7 +16,9 @@ module.exports = {
 
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                exclude: [
+                    /node_modules/
+                ],
                 use: [
                     { loader: 'babel-loader' }//在webpack的module部分的loaders里进行配置即可
                 ]
@@ -24,7 +26,10 @@ module.exports = {
             },
             {
                 test: /app\/\w+\.css$/,
-                exclude: /node_modules/,
+                exclude: [
+                    /node_modules/,
+                    /reset.css/,
+                ],
 
                 use: [
                     {
@@ -43,8 +48,11 @@ module.exports = {
                 ]
             },
             {
-                test: /react-date-picker\/index\.css$/,
-                include: /node_modules/,
+                test: /\.css$/,
+                include: [
+                    /node_modules\/react-date-picker/,
+                    /app\/reset.css/
+                ],
                 use: [
                     {
                         loader: "style-loader"

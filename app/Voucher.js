@@ -1,5 +1,6 @@
 //Greeter,js
 import React, {Component} from 'react';
+import moment from 'moment';
 import VoucherTop from './VoucherTop';
 import VoucherMiddle from './VoucherMiddle';
 import VoucherBottom from './VoucherBottom';
@@ -34,6 +35,13 @@ class Voucher extends Component{
         Object.assign(defaultEditable, props);
 
         var state = {
+            voucherInfo: {
+                No: '',
+                NoFocus: false,
+                date: moment().valueOf(),
+                accessory: '',
+                accessoryFocus: false
+            },
             subjects: [ ],
             zdr: {
                 id: '123321',
@@ -62,6 +70,14 @@ class Voucher extends Component{
         };
         state.total = this.countTotal(state.subjects);
         this.state = state;
+
+        this._topNoFocus = this._topNoFocus.bind(this);
+        this._topNoBlur = this._topNoBlur.bind(this);
+        this._topNoChange = this._topNoChange.bind(this);
+        this._topDateChange = this._topDateChange.bind(this);
+        this._topAccessoryFocus = this._topAccessoryFocus.bind(this);
+        this._topAccessoryBlur = this._topAccessoryBlur.bind(this);
+        this._topAccessoryChange = this._topAccessoryChange.bind(this);
 
         this._voucherBodyScroll = this._voucherBodyScroll.bind(this);
         this._addTr = this._addTr.bind(this);
@@ -125,6 +141,84 @@ class Voucher extends Component{
             subjects:  defauleSubjects,
             dropDownLength: this.subjects.length
         });
+    }
+
+    _topNoFocus (e) {
+        this.setState(function (prevState, props) {
+            var voucherInfo = {};
+            Object.assign(voucherInfo, prevState.voucherInfo);
+            voucherInfo.NoFocus = true;
+
+            return { voucherInfo: voucherInfo }
+        });
+    }
+    _topNoBlur (e) {
+        this.setState(function (prevState, props) {
+            var voucherInfo = {};
+            Object.assign(voucherInfo, prevState.voucherInfo);
+            voucherInfo.NoFocus = false;
+
+            return { voucherInfo: voucherInfo }
+        });
+    }
+    _topNoChange (e) {
+        var v = e.target.value;
+        var reg = /^\d{0,3}$/;
+
+        if (reg.test(v)) {
+            this.setState(function (prevState, props) {
+                var voucherInfo = {};
+                Object.assign(voucherInfo, prevState.voucherInfo);
+                voucherInfo.No = v;
+                return {
+                    voucherInfo: voucherInfo
+                }
+            });
+        }
+    }
+    _topDateChange (s, v) {
+
+        this.setState(function (prevState, props) {
+            var voucherInfo = {};
+            Object.assign(voucherInfo, prevState.voucherInfo);
+            voucherInfo.date = v.dateMoment.valueOf();
+            return {
+                voucherInfo: voucherInfo
+            }
+        });
+    }
+    _topAccessoryFocus (e) {
+        this.setState(function (prevState, props) {
+            var voucherInfo = {};
+            Object.assign(voucherInfo, prevState.voucherInfo);
+            voucherInfo.accessoryFocus = true;
+
+            return { voucherInfo: voucherInfo }
+        });
+    }
+    _topAccessoryBlur (e) {
+        this.setState(function (prevState, props) {
+            var voucherInfo = {};
+            Object.assign(voucherInfo, prevState.voucherInfo);
+            voucherInfo.accessoryFocus = false;
+
+            return { voucherInfo: voucherInfo }
+        });
+    }
+    _topAccessoryChange (e) {
+        var v = e.target.value;
+        var reg = /^\d{0,4}$/;
+
+        if (reg.test(v)) {
+            this.setState(function (prevState, props) {
+                var voucherInfo = {};
+                Object.assign(voucherInfo, prevState.voucherInfo);
+                voucherInfo.accessory = v;
+                return {
+                    voucherInfo: voucherInfo
+                }
+            });
+        }
     }
     _voucherBodyScroll (e) {
         var index = this.state.currentEdit.index,
@@ -572,6 +666,7 @@ class Voucher extends Component{
      */
     _bottomSave (n, e) {
         // todo
+        debugger
         if ( this.state.isValid) {
             if ( n === 1) {
                 console.log(n);
@@ -585,7 +680,17 @@ class Voucher extends Component{
     render() {
         return (
             <div className={style.voucher}>
-                <VoucherTop/>
+                <VoucherTop
+                    ref="vTop"
+                    voucherInfo = { this.state.voucherInfo }
+                    _topNoFocus = { this._topNoFocus }
+                    _topNoBlur = { this._topNoBlur }
+                    _topNoChange = { this._topNoChange }
+                    _topDateChange = { this._topDateChange }
+                    _topAccessoryFocus = { this._topAccessoryFocus }
+                    _topAccessoryBlur = { this._topAccessoryBlur }
+                    _topAccessoryChange = { this._topAccessoryChange }
+                />
                 <VoucherMiddle
                     ref="VoucherMiddle"
                     subjects={ this.state.subjects }

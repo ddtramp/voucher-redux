@@ -15,9 +15,28 @@ class VoucherTop extends Component {
 
         return (
             <div className={style.outside}>
-                <VTNumber></VTNumber>
-                <VTDate></VTDate>
-                <VTAccessory></VTAccessory>
+                <VTNumber
+                    v = { this.props.voucherInfo.No }
+                    focus = { this.props.voucherInfo.NoFocus }
+                    _topNoFocus = { this.props._topNoFocus }
+                    _topNoBlur = { this.props._topNoBlur }
+                    _topNoChange = { this.props._topNoChange }
+
+                ></VTNumber>
+                <VTDate
+                    ref="vtDate"
+                    v = { this.props.voucherInfo.date }
+                    _topDateChange = { this.props._topDateChange }
+
+                ></VTDate>
+                <VTAccessory
+                    v = { this.props.voucherInfo.accessory }
+                    focus = { this.props.voucherInfo.accessoryFocus }
+                    _topAccessoryFocus = { this.props._topAccessoryFocus }
+                    _topAccessoryBlur = { this.props._topAccessoryBlur }
+                    _topAccessoryChange = { this.props._topAccessoryChange }
+
+                ></VTAccessory>
             </div>
         )
     }

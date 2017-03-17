@@ -13,7 +13,14 @@ class VTNumber extends Component {
         return (
             <div className={ style.number }>
                 记字第&nbsp;
-                <VTNInput></VTNInput>
+                <VTNInput
+                    v = { this.props.v }
+                    focus = { this.props.focus }
+                    _topNoFocus = { this.props._topNoFocus }
+                    _topNoBlur = { this.props._topNoBlur }
+                    _topNoChange = { this.props._topNoChange }
+
+                ></VTNInput>
                 &nbsp;号
             </div>
         )
