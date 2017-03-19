@@ -4,6 +4,7 @@ import moment from 'moment';
 import VoucherTop from './VoucherTop';
 import VoucherMiddle from './VoucherMiddle';
 import VoucherBottom from './VoucherBottom';
+import subjects from './subjects.json';
 
 import style from './Voucher.css';//导入
 
@@ -105,26 +106,22 @@ class Voucher extends Component{
 
     componentWillMount() {
         // TODO get subject data async
+        this.subjects = subjects;
+        var _this = this;
+        // fetch('subjects.json')
+        //     .then(response => {
+        //         if (response.ok) {
+        //             console.log('Fetch subjects ok');
+        //         } else {
+        //             new Error('Fetch status false');
+        //         }
+        //
+        //         return response.json
+        //
+        //     })
+        //     .then(d => { _this.subjects = d; })
+        //     .catch(e => console.log('Fetch data faild...'));
 
-        this.subjects = [
-            { id: 1, subject: '1001', name: '库存现金', all: '1001 库存现金', type: 0},
-            { id: 2, subject: '100201', name: '工商银行', all: '100201 工商银行', type: 0},
-            { id: 3, subject: '100202', name: '招商银行', all: '100202 招商银行', type: 0},
-            { id: 4, subject: '100203', name: '上海银行', all: '100203 上海银行', type: 0},
-            { id: 5, subject: '100204', name: '浦发银行', all: '100204 浦发银行', type: 0},
-            { id: 6, subject: '1012', name: '其他货币基金', all: '1012 其他货币基金', type: 0},
-            { id: 7, subject: '110101', name: '短期投资_股票', all: '110101 短期投资_股票', type: 0},
-            { id: 8, subject: '110102', name: '短期投资_债券', all: '110102 短期投资_债券', type: 0},
-            { id: 9, subject: '110103', name: '短期投资_基金', all: '110103 短期投资_基金', type: 0},
-            { id: 10, subject: '1121', name: '应收股票', all: '1121 应收股票', type: 0},
-            { id: 11, subject: '1122', name: '应收账款', all: '1122 应收账款', type: 0},
-            { id: 12, subject: '1123', name: '预付账款', all: '1123 预付账款', type: 0},
-            { id: 13, subject: '1131', name: '应收股利', all: '1131 应收股利', type: 0},
-            { id: 14, subject: '1132', name: '应收利息', all: '1132 应收利息', type: 0},
-            { id: 15, subject: '1121', name: '其他应收款', all: '1121 其他应收款', type: 0},
-            { id: 16, subject: '1401', name: '材料采购', all: '1401 材料采购', type: 0}
-
-        ];
 
         var defauleSubjects = [];
         var firstRow = Object.assign({}, this.defaultSubject);
