@@ -25,7 +25,7 @@ module.exports = {
 
             },
             {
-                test: /app\/\w+\.css$/,
+                test: /app(\/\w*)*\/\w+\.css$/,
                 exclude: [
                     /node_modules/,
                     /reset.css/,
@@ -82,6 +82,7 @@ module.exports = {
         historyApiFallback: true,
         inline: true,
         hot: true,
-        overlay: true
+        overlay: true,
+        publicPath: '/'
     }
 }

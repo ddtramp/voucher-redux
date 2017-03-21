@@ -28,6 +28,8 @@
 .body { max-height: 244px; width: 1080px;  overflow-x: hidden; overflow-y: auto; z-index: -1; }
 .body table { width: 1060px;  }
 .body table tr { position: relative; }
+.body table tr:last-child td { border-bottom: 0 none; }
+
 .body table td { border-top: 0 none; font-weight: normal; }
 .body .jeul {  height: 60px;  }
 .body .jeul  li { height: 60px; line-height: 60px; font-size: 18px; }

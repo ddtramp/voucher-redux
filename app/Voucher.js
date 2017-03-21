@@ -1,10 +1,14 @@
 //Greeter,js
 import React, {Component} from 'react';
 import moment from 'moment';
-import VoucherTop from './VoucherTop';
-import VoucherMiddle from './VoucherMiddle';
-import VoucherBottom from './VoucherBottom';
-import subjects from './subjects.json';
+import VoucherTop from './lib/VoucherTop/VoucherTop';
+import VoucherMiddle from './lib/VoucherMiddle/VoucherMiddle';
+import VoucherBottom from './lib/VoucherBottom/VoucherBottom';
+import DropDown from './lib/DropDown/DropDown';
+import AddSubject from './lib/AddSubject/AddSubject';
+
+
+import subjectList from '../static/subjects.json';
 
 import style from './Voucher.css';//导入
 
@@ -48,6 +52,7 @@ class Voucher extends Component{
                 id: '123321',
                 name: 'jack wang'
             },
+            subjectList: [],
             total: {
                 jfje: null,
                 dfje: null,
@@ -59,7 +64,10 @@ class Voucher extends Component{
 
             editAble: defaultEditable,
 
-            isDropDownShow: false,  // DropDown hide or show
+            DropDownShow: {           // control DropDown hide or show
+                all: false,
+                selectArea: false
+            },  // DropDown hide or show
             dropDownTextareaValue: '',  // DropDown textarea value
             KjkmPositionStyles: {},  // DropDown position
 
@@ -106,22 +114,8 @@ class Voucher extends Component{
 
     componentWillMount() {
         // TODO get subject data async
-        this.subjects = subjects;
-        var _this = this;
-        // fetch('subjects.json')
-        //     .then(response => {
-        //         if (response.ok) {
-        //             console.log('Fetch subjects ok');
-        //         } else {
-        //             new Error('Fetch status false');
-        //         }
-        //
-        //         return response.json
-        //
-        //     })
-        //     .then(d => { _this.subjects = d; })
-        //     .catch(e => console.log('Fetch data faild...'));
 
+        this.getVoucherSubjectsList(); // get and update subject list
 
         var defauleSubjects = [];
         var firstRow = Object.assign({}, this.defaultSubject);
@@ -136,10 +130,48 @@ class Voucher extends Component{
 
         this.setState({
             subjects:  defauleSubjects,
-            dropDownLength: this.subjects.length
+            dropDownLength: subjectList.length,
+            subjectList: subjectList
         });
     }
+    componentDidMount() {
+        // todo
 
+    }
+
+    /**
+     * 获取凭证科目列表 subjects
+     */
+    getVoucherSubjectsList () {
+        if (this.props.subjectsUrl) {
+            fetch(this.props.subjectsUrl)
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Fetch subjects ok');
+                        return response.json();
+                    } else {
+                        new Error('Fetch status false');
+                    }
+                })
+                .then(d => {
+                    this.setState({
+                        subjectList: d,
+                        dropDownLength: d.length
+                    });
+
+                })
+                .catch(e => console.log('Fetch data faild...'));
+        }
+    }
+
+    /**
+     * 获取所有科目列表
+     * @returns {Array}
+     */
+    getAllSubject () {
+
+        return [];
+    }
     _topNoFocus (e) {
         this.setState(function (prevState, props) {
             var voucherInfo = {};
@@ -221,7 +253,7 @@ class Voucher extends Component{
         var index = this.state.currentEdit.index,
             scrollDiv = this.refs.VoucherMiddle.refs.VMBody.refs.scrollDiv;
 
-        if ( this.state.isDropDownShow && this.state.currentEdit.index ) {
+        if ( this.state.DropDownShow.all && this.state.currentEdit.index ) {
             var distance = (parseInt(this.state.currentEdit.index ) * 61);
 
             if (scrollDiv.scrollTop > distance || (scrollDiv.scrollTop < (parseInt(index) + 1 - 4) * 61 ) ) {
@@ -234,7 +266,10 @@ class Voucher extends Component{
                     return {
                         subjects: subjects ,
                         currentEdit: { index: null },
-                        isDropDownShow: false,
+                        DropDownShow: {
+                            all: false,
+                            selectArea: true,
+                        },
                         KjkmPositionStyles: {}
                     }
                 });
@@ -286,7 +321,10 @@ class Voucher extends Component{
 
             this.setState(function (prevState, props) {
                 return {
-                    isDropDownShow: true,
+                    DropDownShow: {
+                        all: true,
+                        selectArea: true
+                    },
                     KjkmPositionStyles: {
                         top: offsetTop - scrollDiv.scrollTop,
                         left: (offsetLeft + 200)
@@ -318,7 +356,10 @@ class Voucher extends Component{
             offsetLeft = e.target.offsetLeft;
         _this.setState(function (prevState, props) {
             return {
-                isDropDownShow: true,
+                DropDownShow: {
+                    all: true,
+                    selectArea: true
+                },
                 currentEdit: { index: index },
                 KjkmPositionStyles: {
                     top: offsetTop - scrollDiv.scrollTop,
@@ -340,7 +381,10 @@ class Voucher extends Component{
         this.refs.DropDown.wrapper.scrollTop = 0;   // set to top
         this.setState(function (prevState, props) {
             return {
-                isDropDownShow: false,
+                DropDownShow: {
+                    all: false,
+                    selectArea: true
+                },
                 dropDownTextareaValue: '',
                 dropDownCurrentIndex: 0
         }
@@ -358,7 +402,10 @@ class Voucher extends Component{
 
                 return {
                     subjects: subjects,
-                    isDropDownShow: false,
+                    DropDownShow: {
+                        all: false,
+                        selectArea: true
+                    },
                     event: 'keyDown'
                 }
             });
@@ -378,7 +425,10 @@ class Voucher extends Component{
 
                 return {
                     subjects: subjects,
-                    isDropDownShow: false,
+                    DropDownShow: {
+                        all: false,
+                        selectArea: true
+                    },
                     event: 'keyDown'
                 }
             });
@@ -434,7 +484,10 @@ class Voucher extends Component{
             subjects[index].isDfInputShow = false;
             return {
                 subjects: subjects,
-                isDropDownShow: false,
+                DropDownShow: {
+                    all: false,
+                    selectArea: true
+                },
                 event: 'keyDown'
             }
         });
@@ -614,7 +667,10 @@ class Voucher extends Component{
 
                     return {
                         subjects: subjects,
-                        isDropDownShow: false,
+                        DropDownShow: {
+                            all: false,
+                            selectArea: true
+                        },
                         event: 'keyDown'
                     }
                 });
@@ -720,9 +776,9 @@ class Voucher extends Component{
 
                 <DropDown
                     ref="DropDown"
-                    subjects = { this.subjects }
+                    subjectList = { this.state.subjectList }
                     currentIndex= { this.state.currentEdit.index }
-                    isDropDownShow={ this.state.isDropDownShow }
+                    DropDownShow={ this.state.DropDownShow }
                     dropDownCurrentIndex = { this.state.dropDownCurrentIndex }
 
                     dropDownTextareaValue={ this.state.dropDownTextareaValue }
@@ -731,95 +787,15 @@ class Voucher extends Component{
                     _kjkmEditTextareaKeydown = { this._kjkmEditTextareaKeydown }
                     _liOnMouseDown = { this._liOnMouseDown }
                     KjkmPositionStyles = { this.state.KjkmPositionStyles }
+
                 ></DropDown>
+                <AddSubject>
+
+                </AddSubject>
             </div>
         )
     }
 }
 
-class DropDown extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            filter: null
-        };
-
-        this._newSubjectClick = this._newSubjectClick.bind(this);
-
-    }
-
-    componentWillMount() {
-        this.subjects = this.props.subjects;
-    }
-
-    componentDidUpdate () {
-        if (this.props.isDropDownShow) {
-            this.textAreaInput.focus();
-        }
-
-    }
-
-    _newSubjectClick (e) {
-        console.log(' 新增科目 click ')
-    }
-
-    render () {
-
-        let filter = this.props.dropDownTextareaValue;
-        let liData =[];
-        let reg = new RegExp(filter, 'g');
-        if (!filter) {
-            liData = this.subjects;
-        } else {
-            // this.subjects.map(function (v) {
-            //     if (v.all.search(reg) !== -1 ) {
-            //         liData.push(v);
-            //     }
-            // })
-            liData = this.subjects.filter(function (val) {
-                    return reg.test(val.all)
-            });
-        }
-
-        return (
-            <div
-                className={ style.kjkmEdit  + ' '+  ( this.props.isDropDownShow ? '' : style.hidden ) }
-                style={ this.props.KjkmPositionStyles }
-            >
-                <textarea
-                    data-currentindex={ this.props.currentIndex }
-                    ref={(textAreaInput) => { this.textAreaInput = textAreaInput; }}
-                    value={this.props.dropDownTextareaValue}
-                    onBlur={ this.props._kjkmEditTextareaBlur }
-                    onChange={ this.props._kjkmEditTextareaChange}
-                    onKeyDown = { this.props._kjkmEditTextareaKeydown }
-
-
-                />
-                <div  className={ style.dropdown }  >
-                    <ul
-                        ref={(wrapper) => { this.wrapper = wrapper; }}
-                    >
-                        {   (filter && !liData.length ) ?
-                            '没有匹配的数据'
-                            :
-                            liData.map((v, i)=> <li
-                                key={ v.id }
-                                data-subjectindex = {i}
-                                data-subject={ v.subject }
-                                data-subjectname = { v.name }
-                                onMouseDown={this.props._liOnMouseDown}
-                                className= { (i === this.props.dropDownCurrentIndex) ? style.dropDownCurrent : ''}
-                            >{ v.all }</li>)
-                        }
-                    </ul>
-                    <div className={ style.newSubject } onMouseDown={ this._newSubjectClick } >
-                        <span>+</span> 新增科目
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
 
 export default Voucher

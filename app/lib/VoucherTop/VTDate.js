@@ -7,7 +7,7 @@ import { DateField, DatePicker, MonthView } from 'react-date-picker'
 
 import style from './VoucherTop.css';
 require('react-date-picker/index.css') ;
-require('./reset.css');
+require('./../../reset.css');
 
 class VTDate extends Component {
 
@@ -18,16 +18,10 @@ class VTDate extends Component {
         // className
 
         if (v.children) {
-            console.log(React.Children.count(v.children))
+            console.log('Render Day');
         }
     }
     render() {
-
-        const onChange = (dateString, { dateMoment, timestamp }) => {
-            console.log(dateString)
-        }
-
-        let date = '2017-04-24'
 
         return (
             <div className={ style.date }>
