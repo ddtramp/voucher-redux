@@ -5,10 +5,12 @@ import VoucherTop from './lib/VoucherTop/VoucherTop';
 import VoucherMiddle from './lib/VoucherMiddle/VoucherMiddle';
 import VoucherBottom from './lib/VoucherBottom/VoucherBottom';
 import DropDown from './lib/DropDown/DropDown';
+import UnderWrapper from './lib/UnderWrapper/UnderWrapper';
+import Loading from './lib/Loading/Loading';
 import AddSubject from './lib/AddSubject/AddSubject';
 
 
-import subjectList from '../static/subjects.json';
+import subjectList from '../static/data/subjects.json';
 
 import style from './Voucher.css';//导入
 
@@ -47,7 +49,7 @@ class Voucher extends Component{
                 accessory: '',
                 accessoryFocus: false
             },
-            subjects: [ ],
+            subjects: [ ],              // 凭证信息
             zdr: {
                 id: '123321',
                 name: 'jack wang'
@@ -62,19 +64,23 @@ class Voucher extends Component{
                 index: this.props.currentEdit
             },
 
-            editAble: defaultEditable,
+            editAble: defaultEditable,      // 设置是否可编辑
 
-            DropDownShow: {           // control DropDown hide or show
-                all: false,
-                selectArea: false
-            },  // DropDown hide or show
-            dropDownTextareaValue: '',  // DropDown textarea value
-            KjkmPositionStyles: {},  // DropDown position
+            DropDownShow: {                 // control DropDown hide or show
+                all: false,                 // all dropdown area
+                selectArea: false           // control select subject area
+            },
+            dropDownTextareaValue: '',      // DropDown textarea value
+            KjkmPositionStyles: {},         // DropDown position
 
-            dropDownLength: null,   // 总条目 keydown； up and down arrow
-            dropDownCurrentIndex: 0, // 当前条目
-            isValid: false,          // 是否平衡; when Je Component input change
-            event: null              // { String } keyDown、 click、 change； for je focus and select
+            dropDownLength: null,           // 总条目 keydown； up and down arrow
+            dropDownCurrentIndex: 0,        // 当前条目
+            isValid: false,                 // 是否平衡; when Je Component input change
+            event: null,                    // { String } keyDown、 click、 change； for je focus and select
+
+
+            underWrapper: true,     // control underWrapper show & hide
+            loading: true
 
         };
         state.total = this.countTotal(state.subjects);
@@ -109,6 +115,9 @@ class Voucher extends Component{
         this._jeInputKeyDown = this._jeInputKeyDown.bind(this);
 
         this._bottomSave = this._bottomSave.bind(this);
+
+
+        this._underWrapperClick = this._underWrapperClick.bind(this);
 
     }
 
@@ -730,6 +739,18 @@ class Voucher extends Component{
             }
         }
     }
+
+    _underWrapperClick (e) {
+        // todo
+        console.log('Under Wrapper click');
+
+
+        this.setState({
+            underWrapper: false
+        });
+
+
+    }
     render() {
         return (
             <div className={style.voucher}>
@@ -789,7 +810,17 @@ class Voucher extends Component{
                     KjkmPositionStyles = { this.state.KjkmPositionStyles }
 
                 ></DropDown>
-                <AddSubject>
+                <UnderWrapper
+                    underWrapper = { this.state.underWrapper }
+                    _underWrapperClick = { this._underWrapperClick }
+                >
+                </UnderWrapper>
+                <Loading
+                    loading = { this.state.loading }
+                >
+                </Loading>
+                <AddSubject
+                >
 
                 </AddSubject>
             </div>

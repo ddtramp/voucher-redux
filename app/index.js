@@ -5,7 +5,7 @@ import Voucher from './Voucher';
 
 render(<Voucher
     currentEdit="0"
-    subjectsUrl="static/subjects.json"
+    subjectsUrl="static/data/subjects.json"
 
 />, document.getElementById('root') );
 

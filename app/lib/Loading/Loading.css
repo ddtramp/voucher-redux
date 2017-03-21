@@ -1,0 +1,4 @@
+.hidden { display: none !important; }
+
+.loading { position: absolute; top: 30%; left: 0; width: 100%; text-align: center; }
+.content { width: 200px; background-color: #fff; margin: auto auto; }
