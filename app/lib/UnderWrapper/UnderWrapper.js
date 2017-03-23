@@ -18,7 +18,6 @@ class UnderWrapper extends Component {
                 className={ className.join(' ') }
                 onClick= { this.props._underWrapperClick }
             >
-                hello
             </div>
         )
     }

@@ -12,7 +12,7 @@ class AddSubject extends Component {
     render () {
         return (
             <div >
-                add subject
+                add subject not done; drunked, fixed later
             </div>
         )
     }

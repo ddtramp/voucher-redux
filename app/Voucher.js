@@ -80,7 +80,7 @@ class Voucher extends Component{
 
 
             underWrapper: true,     // control underWrapper show & hide
-            loading: true
+            loading: false
 
         };
         state.total = this.countTotal(state.subjects);
