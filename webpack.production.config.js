@@ -19,7 +19,11 @@ module.exports = {
                 ]
             },
             {
-                test: /\.css$/,
+                test: /app(\/\w*)*\/\w+\.css$/,
+                exclude: [
+                    /node_modules/,
+                    /reset.css/,
+                ],
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: [
@@ -27,6 +31,28 @@ module.exports = {
                             loader: "css-loader",
                             options: {
                                 modules: true
+                            }
+
+                        },
+                        {
+                            loader: "postcss-loader"
+                        }
+                    ]
+                })
+            },
+            {
+                test: /\.css$/,
+                include: [
+                    /node_modules\/react-date-picker/,
+                    /app\/reset.css/
+                ],
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        {
+                            loader: "css-loader",
+                            options: {
+                                modules: false
                             }
 
                         },
