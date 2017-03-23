@@ -79,7 +79,7 @@ class Voucher extends Component{
             event: null,                    // { String } keyDown、 click、 change； for je focus and select
 
 
-            underWrapper: true,     // control underWrapper show & hide
+            underWrapper: false,     // control underWrapper show & hide
             loading: false
 
         };

@@ -11,7 +11,7 @@ class AddSubject extends Component {
 
     render () {
         return (
-            <div >
+            <div className={ style.hidden }>
                 add subject not done; drunked, fixed later
             </div>
         )
