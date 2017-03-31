@@ -1,9 +1,0 @@
-.bottom { height: 48px; margin: 0 49px 0 40px;  }
-
-.bottomLeft { display: inline-block; width: 50%; height: 48px; line-height: 48px; }
-.bottomRight { display: inline-block; width: 50%; text-align: right; height: 48px; line-height: 48px; position: relative; }
-
-.bottomRight button { margin-left: 10px; padding: 6px 20px; border-radius: 4px 4px; border: 0 none;  background-color: #cdcdcd; color: #fff;font-size: 14px; position: relative; top: 3px; }
-.bottomRight button:focus { outline: none; }
-
-.buttonActive { cursor: pointer; background-color: #93d200 !important; }
