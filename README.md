@@ -12,11 +12,10 @@ no loading, no underWrapper ...
 ----
 Use Those Packages:
 
-import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-
-import fetch from 'isomorphic-fetch';
-import moment from 'moment';
+    import thunkMiddleware from 'redux-thunk';
+    import { createLogger } from 'redux-logger';
+    import fetch from 'isomorphic-fetch';
+    import moment from 'moment';
 
 
 Webpack Scaffold
