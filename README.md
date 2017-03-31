@@ -7,10 +7,10 @@ Voucher, React, Redux
 ----
 Function:
 
-no loading, no underWrapper
+no loading, no underWrapper ...
 
 ----
-use those packages:
+Use Those Packages:
 
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
@@ -19,7 +19,7 @@ import fetch from 'isomorphic-fetch';
 import moment from 'moment';
 
 
-webpack 脚手架
+Webpack Scaffold
 
     usage：
     
@@ -28,6 +28,8 @@ webpack 脚手架
         npm start 
         
         npm build 
+    
+    just try it...
    
 [see](http://www.jianshu.com/p/42e11515c10f)
 ----
